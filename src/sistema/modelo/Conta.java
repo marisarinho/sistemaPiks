@@ -20,7 +20,13 @@ public class Conta{
 		this.saldo = saldo;
 		this.cliente = cliente;
 		//this.lancamento = lancamento;
-		this.lancamento = (lancamento == null) ? new ArrayList<>() : lancamento;
+		//this.lancamento = (lancamento == null) ? new ArrayList<>() : lancamento;
+		if (lancamento == null) {
+		    this.lancamento = new ArrayList<>();
+		} else {
+		    this.lancamento = lancamento;
+		}
+
 		limite2 = this.limite;
 	}
 	
