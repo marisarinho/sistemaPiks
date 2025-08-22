@@ -19,8 +19,6 @@ public class Conta{
 		this.chavepiks = chavepiks;
 		this.saldo = saldo;
 		this.cliente = cliente;
-		//this.lancamento = lancamento;
-		//this.lancamento = (lancamento == null) ? new ArrayList<>() : lancamento;
 		if (lancamento == null) {
 		    this.lancamento = new ArrayList<>();
 		} else {
@@ -34,6 +32,12 @@ public class Conta{
 		this.id2 = id2;
 		this.chave = chave;
 		this.saldo2 = saldo2;
+	}
+	
+	public Conta(int id2, String chave) {
+		this.id2 = id2;
+		this.chave = chave;
+		this.saldo2 = 0;
 	}
 
 	public void creditar(Double valor) {
@@ -110,6 +114,10 @@ public class Conta{
 	           ", Saldo=" + saldo +
 	           ", Cliente=" + cliente.nome +
 	           ", CPF=" + cliente.cpf;
+	}
+
+	public ArrayList<Lancamento> getLancamentos() {
+		return lancamento;
 	}
 	
 }

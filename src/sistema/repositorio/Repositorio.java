@@ -3,7 +3,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.TreeMap;
 
 import sistema.modelo.Cliente;
 import sistema.modelo.Conta;
@@ -20,7 +22,7 @@ public class Repositorio {
 		contasPIKS.put(chave, cta);
 	}
 	
-	public void removerConta(Conta cta) {
+	public static void removerConta(Conta cta) {
         if(cta.getSaldo() == 0) {
             contasPIKS.remove(cta.getChavePiks());
             clientesCPF.remove(cta.getCliente().getCpf());
@@ -39,28 +41,22 @@ public class Repositorio {
 		clientesCPF.put(cpf, cli); 
 	}
 	
-	public void removerCliente(Cliente cli ) {
+	public static void removerCliente(Cliente cli ) {
 		Integer cpf = cli.getCpf();
 		clientesCPF.remove(cpf); 
 	}
 	
-	public Cliente localizarCliente(int cpf) {
+	public static Cliente localizarCliente(int cpf) {
 		return clientesCPF.get(cpf); 
 	}
 	
-	//public ArrayList<Cliente> getCliente() {
-	//	return this.cliente;
-	//}
 	
-	//public ArrayList<Conta> getConta() {
-	//	return this.conta;
-	//}
 	
-	public ArrayList<Cliente> getClientes() {
+	public static ArrayList<Cliente> getClientes() {
         return new ArrayList<>(clientesCPF.values());
     }
     
-    public ArrayList<Conta> getContas() {
+    public  static ArrayList<Conta> getContas() {
         return new ArrayList<>(contasPIKS.values());
     }
 	

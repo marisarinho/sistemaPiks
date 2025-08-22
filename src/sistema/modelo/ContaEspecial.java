@@ -17,6 +17,12 @@ public class ContaEspecial extends Conta {
         super(id, chave, saldo, null, new ArrayList<Lancamento>(), limite2); 
         this.limite2 = limite2;
     }
+    
+    public ContaEspecial(int id, String chave, Double limite2) {
+        super(id, chave, 0.0, null, new ArrayList<Lancamento>(), limite2); 
+        this.limite2 = limite2;
+    }
+
 
 
 	public void debitar(Double valor) {
