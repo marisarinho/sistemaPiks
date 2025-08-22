@@ -8,13 +8,13 @@ public class ContaEspecial extends Conta {
 	private double limite2;
     
     public ContaEspecial(int id, String chavepiks, Double saldo, Cliente cliente, Double limite) {
-        super(id, chavepiks, saldo, cliente, new ArrayList<Lancamento>());
+        super(id, chavepiks, saldo, cliente, new ArrayList<Lancamento>(), limite);
         this.limite = limite;
     }
     
    
     public ContaEspecial(int id, String chave, Double saldo, Double limite2) {
-        super(id, chave, saldo, null, new ArrayList<Lancamento>()); 
+        super(id, chave, saldo, null, new ArrayList<Lancamento>(), limite2); 
         this.limite2 = limite2;
     }
 

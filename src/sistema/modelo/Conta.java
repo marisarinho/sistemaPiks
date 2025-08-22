@@ -12,6 +12,7 @@ public class Conta{
 	private String chave;
 	private double saldo2;
 	protected Double limite;
+	private Double limite2;
 	
 	public Conta (int id, String chavepiks, Double saldo, Cliente cliente, ArrayList<Lancamento> lancamento, Double limite) {
 		this.id = id;
@@ -20,7 +21,7 @@ public class Conta{
 		this.cliente = cliente;
 		//this.lancamento = lancamento;
 		this.lancamento = (lancamento == null) ? new ArrayList<>() : lancamento;
-		this.limite;
+		limite2 = this.limite;
 	}
 	
 	public Conta(int id2, String chave, double saldo2) {
