@@ -8,17 +8,27 @@ public class Apagar {
 
 	public Apagar() {
 		try {
-			String chave = "chave3";
+			Repositorio.lerObjetos();
+			String chave = "chave2";
+			System.out.println("-------------");
+			
 			Conta conta = Repositorio.localizarConta(chave);
+			System.out.println("entrou aqui 2222");
+			System.out.println(conta.getCliente().getCpf());
+			System.out.println(conta.getSaldo());
+			System.out.println("chegpou aqui");
 			if (conta == null) 
 				throw new Exception(chave+" n�o encontrada");
 			
 			if(conta.getSaldo() != 0) 
 				throw new Exception("Conta com saldo n�o pode ser apagada ");
 			
+			
 			Cliente cliente = conta.getCliente();
-			conta.setCliente(null);
-			cliente.setConta(null);
+			System.out.println("Entrou cPFFF");
+			System.out.println(cliente.getCpf());
+			//conta.setCliente(null);
+			//cliente.setConta(null);
 			Repositorio.removerConta(conta);	
 			Repositorio.removerCliente(cliente);	
 			Repositorio.gravarObjetos();

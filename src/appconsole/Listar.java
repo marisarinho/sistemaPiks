@@ -17,7 +17,7 @@ public class Listar {
 			System.out.println("\n---------listagem de contas-----");
 			for(Conta c : Repositorio.getContas()) { 
 				System.out.println(c);
-				for(Lancamento lan : c.getLancamentos()) 
+				for(Lancamento lan : c.getLancamento()) 
 					System.out.println("   "+lan);
 			}
 

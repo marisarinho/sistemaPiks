@@ -16,6 +16,9 @@ public class Repositorio {
 	private static TreeMap<String,Conta> contasPIKS = new TreeMap<>();
 	private static TreeMap<Integer,Cliente> clientesCPF = new TreeMap<>();
 	
+	public static Cliente getCliente(int cpf) {
+		return clientesCPF.get(cpf);
+	}
 	
 	public static void adicionarConta(Conta cta) {
 		String chave = cta.getChavePiks();
@@ -24,16 +27,42 @@ public class Repositorio {
 	
 	public static void removerConta(Conta cta) {
         if(cta.getSaldo() == 0) {
-            contasPIKS.remove(cta.getChavePiks());
-            clientesCPF.remove(cta.getCliente().getCpf());
+        	System.out.println("cta getl cliente");
+        	System.out.println(cta.getSaldo());
+          //  System.out.println(cta.getCliente().getCpf());
+            System.out.println(cta);
+            
+        	contasPIKS.remove(cta.getChavePiks());
+        	Cliente clienteConta = getClienteByContaId(cta.getId());
+        	if (clienteConta != null) {
+        		int idCliente = clienteConta.getCpf();
+        		
+        		Integer obj = Integer.valueOf(idCliente);
+
+        		clientesCPF.remove(idCliente);
+        		Repositorio.gravarObjetos();
+        	}
+        //	clientesCPF.remove(getClienteByContaId(cta.getId().getCpf());
         } else {
             throw new RuntimeException("Não é possível remover conta com saldo diferente de zero.");
         }
     }
 	
 	public static Conta localizarConta(String chavepiks) {
+		System.out.println("entrou noo lcoalizar conta");
+		for (Cliente cli : clientesCPF.values()) {
+            System.out.println(cli.getNome());
+        }
+		
+		for (Conta conta : contasPIKS.values()) {
+			System.out.println("for da conta");
+            System.out.println(conta.getCliente().getCpf());
+        }
+		System.out.println("essa linha");
+		System.out.println(contasPIKS.get(chavepiks).getCliente().getCpf());
+		
 		return contasPIKS.get(chavepiks);
-	
+		
 	}
 	
 	public static void adicionarCliente(Cliente cli) {
@@ -58,6 +87,16 @@ public class Repositorio {
     
     public  static ArrayList<Conta> getContas() {
         return new ArrayList<>(contasPIKS.values());
+    }
+    
+    public static Cliente getClienteByContaId(int id) {
+    	for (Cliente cli : clientesCPF.values()) {
+            //System.out.println(cli.getNome());
+    		if (cli.getConta().getId() == id ) {
+    			return cli;
+    		}
+        }
+    	return null; 
     }
 	
     public static void lerObjetos() {
@@ -100,7 +139,9 @@ public class Repositorio {
 				limite = Double.parseDouble(partes[3]); // <>0=ContaEspecial
 				cpf = Integer.parseInt(partes[4]);
 				nome = partes[5];
+				//cliente = getCliente(cpf);
 				cliente = new Cliente(cpf, nome);
+				
 				if (limite == 0.0)
 					conta = new Conta(id, chave, saldo);
 				else
@@ -173,5 +214,6 @@ public class Repositorio {
 		}
 
 	}
+	
 	
 }

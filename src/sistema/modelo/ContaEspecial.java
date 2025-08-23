@@ -2,50 +2,46 @@ package sistema.modelo;
 
 import java.util.ArrayList;
 
+
 public class ContaEspecial extends Conta {
-    private Double limite; // só existe aqui
+  private double limite;
+  
+  public ContaEspecial(int id, String chave, double saldo, double limite, Cliente cliente) {
+    super(id, chave, saldo);   
+    this.limite = limite;
+    this.setCliente(cliente);  
+}
 
-    // Construtor completo
-    public ContaEspecial(int id, String chavepiks, Double saldo, Cliente cliente, Double limite) {
-        super(id, chavepiks, saldo, cliente, new ArrayList<Lancamento>());
-        this.limite = limite;
-    }
+  public ContaEspecial(int id, String chave, double limite) throws Exception {
+    super(id, chave);
 
-    // Construtor sem cliente
-    public ContaEspecial(int id, String chave, Double saldo, Double limite) {
-        super(id, chave, saldo, null, new ArrayList<Lancamento>());
-        this.limite = limite;
-    }
+    this.limite = limite;
+  }
 
-    // Construtor só com id, chave e limite (saldo começa 0)
-    public ContaEspecial(int id, String chave, Double limite) {
-        super(id, chave, 0.0, null, new ArrayList<Lancamento>());
-        this.limite = limite;
-    }
+  public ContaEspecial(int id, String chave, double saldo, double limite) throws Exception {
+    this(id, chave, limite);
 
-   
+    setSaldo(saldo);
+  }
+  
+  @Override
+  public void debitar(double valor) {
+    if ((getSaldo() + limite) < valor)
+      throw new RuntimeException("Saldo e/ou limite insuficiente");
 
-    public void setLimite(Double limite) {
-    	this.limite = limite;
-    }
-	
+    setSaldo(getSaldo() - valor);
+  }
 
-	public void debitar(Double valor) {
-        if (valor <= saldo + limite) {
-            saldo -= valor;
-            adicionar(new Lancamento(valor, "-"));
-        } else {
-            throw new RuntimeException("Saldo insuficiente para realizar o débito.");
-        }
-    }
-    
-    
-    public String toString() {
-        return super.toString() + ", Limite=" + limite;
-    }
+  public double getLimite() {
+    return limite;
+  }
 
+  public void setLimite(double limite) {
+    this.limite = limite;
+  }
 
-	public Double getLimite() {
-		return this.limite;
-	}
+  @Override
+  public String toString() {
+    return "{id: " + getId() + ", chavepiks: " + getChavePiks() + ", saldo: " + getSaldo() + ", limite: " + limite + ", cpf: " + getCliente().getCpf() + ", nome: " + getCliente().getNome() + "}";
+  }
 }

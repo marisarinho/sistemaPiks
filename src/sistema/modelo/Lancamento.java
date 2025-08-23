@@ -1,6 +1,7 @@
 package sistema.modelo;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import sistema.repositorio.Repositorio;
 
 public class Lancamento {
     protected LocalDateTime datahora;
@@ -31,4 +32,5 @@ public class Lancamento {
 	public Double getValor() {
 		return this.valor;
 	}
+	
 }
