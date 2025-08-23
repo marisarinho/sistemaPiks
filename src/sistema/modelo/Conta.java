@@ -5,16 +5,16 @@ import java.util.ArrayList;
 public class Conta{
 	protected int id;
 	protected String chavepiks;
-	protected Double saldo;
+	protected double saldo;
 	private Cliente cliente;
 	protected ArrayList<Lancamento> lancamento;
-	private int id2;
-	private String chave;
-	private double saldo2;
-	protected Double limite;
-	private Double limite2;
 	
-	public Conta (int id, String chavepiks, Double saldo, Cliente cliente, ArrayList<Lancamento> lancamento, Double limite) {
+	private String chave;
+	
+	//protected Double limite;
+	
+	
+	public Conta (int id, String chavepiks, double saldo, Cliente cliente, ArrayList<Lancamento> lancamento) {
 		this.id = id;
 		this.chavepiks = chavepiks;
 		this.saldo = saldo;
@@ -25,20 +25,23 @@ public class Conta{
 		    this.lancamento = lancamento;
 		}
 
-		limite2 = this.limite;
+		//limite = this.limite;
 	}
 	
 	public Conta(int id2, String chave, double saldo2) {
-		this.id2 = id2;
+		this.id = id2;
 		this.chave = chave;
-		this.saldo2 = saldo2;
+		this.saldo = saldo2;
 	}
 	
 	public Conta(int id2, String chave) {
-		this.id2 = id2;
+		this.id = id2;
 		this.chave = chave;
-		this.saldo2 = 0;
+		//this.saldo = 0;
 	}
+	public Conta(int id, String chavepiks, Double saldo) {
+        this(id, chavepiks, saldo, null, new ArrayList<>());
+    }
 
 	public void creditar(Double valor) {
 		saldo += valor;
@@ -55,13 +58,13 @@ public class Conta{
 		
 	}
 	
-	public Double getLimite() {
-        return limite;
-    }
+	//public Double getLimite() {
+      //  return limite;
+   // }
 
-    public void setLimite(Double limite) {
-        this.limite = limite;
-    }
+   // public void setLimite(Double limite) {
+    //    this.limite = limite;
+   // }
 	
 	public int getId() {
 		return this.id;
